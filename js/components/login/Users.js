@@ -5,8 +5,8 @@ export default {
     components: { NewUser, ReturnedUser },
     template: `
         <div class="userLogin">
-            <button @click="show('returnUser')">Login</button>
-            <button @click="show(newUser)">New User</button>
+            <new-user></new-user>
+            <returned-user></returned-user>
         </div>
     `,
     data() {
@@ -19,7 +19,6 @@ export default {
     methods: {
         show(status) {
             const statusType = (status == "newUser") ? this.isNewUser = true : this.isNewUser = false; 
-            alert(statusType);
         }
     }
 }

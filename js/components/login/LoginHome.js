@@ -1,12 +1,10 @@
-import Users from "./Users.js";
+import Borders from "./Borders.js";
 
 export default {
-    components: { Users },
+    components: { Borders },
     template: `
         <div class="loginBox">
-            <users></users>
-            <new-user></new-user>
-            <returned-user></returned-user>
+            <borders></borders>
         </div>
     `,
 
