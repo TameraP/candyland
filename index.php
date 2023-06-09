@@ -8,16 +8,17 @@
         <meta name="Description" content="This is a user login project created using Vue and PHP object oriented programming.">
         <script src="https://unpkg.com/vue@3"></script> 
         <script src="https://cdn.tailwindcss.com"></script> 
-        <link rel="stylesheet" href="./assets/dist/css/main.css">
+        <link rel="stylesheet" href="./assets/dist/css/styles.css">
     </head>
-    <body>
-    <div id="app" class="page">
-    </div> 
+    <body class="homeBody">
+    <h1 class="welcomeSign">Welcome to CandyLand</h1>
+        <div id="app" class="page">
+        </div> 
 
-    <script type="module">
-        import App from './js/components/App.js';
+        <script type="module">
+            import App from './js/components/App.js';
 
-        Vue.createApp(App).mount('#app');
-    </script>
+            Vue.createApp(App).mount('#app');
+        </script>
     </body>
 </html>

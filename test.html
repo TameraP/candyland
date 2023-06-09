@@ -1,0 +1,95 @@
+<style>
+
+#custom-nav{
+    background-position: bottom;
+}
+#custom-nav .fusion-layout-column {
+  align-items: center;
+  height: 100%;
+}
+#custom-nav .fusion-builder-row .fusion-menu {
+  display: flex;
+  max-width: 1770px;
+  justify-content: space-evenly;
+}
+#custom-nav .fusion-builder-row .fusion-menu li{
+    margin-top: 0  !important;
+    font-weight: bold;
+  align-self: center;
+}
+@media only screen and (min-width: 1024px){
+    .nav-left .right-side-links,
+    .nav-right .left-side-links {
+        display:none;
+    }
+}
+#custom-nav .fusion-imageframe img,
+.fusion-logo .fusion-logo-link img.fusion-standard-logo {
+  max-height: 80px !important;
+  width:auto  !important;
+}
+.fusion-logo .fusion-logo-link img.fusion-sticky-logo{
+  max-height: 50px !important;
+  width:auto  !important;
+}
+#mobile-nav {
+  position: relative;
+}
+#mobile-nav .awb-menu.collapse-enabled {
+  justify-content: flex-end;
+}
+#mobile-nav .awb-menu.collapse-enabled.mobile-size-full-absolute.expanded .awb-menu__main-ul {
+  z-index: 99999999999999;
+  pointer-events: auto;
+  position: relative;
+}
+.nav-btn a,
+a.fusion-button-default {
+    backgroud-color:#fff;
+    box-shadow: 4px 4px 0px #ACD455 !important;
+    border:2px solid #000 !important;
+    padding:11px 20px 13px 20px !important;
+    border-radius: 50px !important;
+    font-weight: bold;
+    margin-bottom: -4px;
+    line-height:19px;
+}
+a.fusion-button-default:hover {
+    backgroud-color:#ACD455 !important;
+    color:#ACD455 !important; 
+  
+    
+}
+a.fusion-button-default:hover .fusion-button-text {
+    color:#000 !important;
+}
+
+.bar h2 { background-image: url('/wp-content/uploads/2023/05/textbar02.webp');
+display: inline-block;
+/*background-size: cover;*/
+background-position: bottom;
+background-repeat: repeat-x;
+font-family:"Open Sans", sans-serif;
+font-weight:300;
+}
+
+
+/*footer*/
+.fusion-footer{font-size:16px;line-height:22px;}
+#menu-footer-bottom .awb-menu__main-li::after {
+  content: "|";
+  margin-left: 10px;
+  color:#ADADAD;
+}
+#menu-footer-bottom .awb-menu__main-li:last-child::after {
+  content: "";
+  margin-righ: 0;
+}
+#menu-footer-right, #menu-footer-right-1 {
+  font-weight: bold;
+}
+.fusion-footer .img-responsive {
+  max-height: 100px;
+  width: auto;
+}
+</style>
