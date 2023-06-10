@@ -1,24 +1,31 @@
 import NewUser from "./NewUser.js";
 import ReturnedUser from "./ReturnedUser.js";
+import AddUser from "./AddUser.js";
 
 export default {
-    components: { NewUser, ReturnedUser },
+    components: { NewUser, ReturnedUser, AddUser },
     template: `
         <div class="userLogin">
-            <new-user></new-user>
-            <returned-user></returned-user>
+            <new-user @choose-box="show"></new-user>
+            <returned-user @choose-box="show"></returned-user>
         </div>
     `,
     data() {
         return {
-            isNewUser: false,
-            isReturnedUser: false
+            boxStatus: {
+                isNewUser: false,
+                isReturnedUser: false
+            }
         }
     },
 
     methods: {
-        show(status) {
-            const statusType = (status == "newUser") ? this.isNewUser = true : this.isNewUser = false; 
+        show(status, e) {
+            for(let key in this.boxStatus) {
+                if(key == status ? this.boxStatus[key] = true : this.boxStatus[key] = false );
+            }  
+            
+            this.$emit('showBox', status);
         }
     }
 }

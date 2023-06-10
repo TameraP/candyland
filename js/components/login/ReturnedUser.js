@@ -1,5 +1,5 @@
 export default {
     template: `
-        <button @click="show('returnUser')">Login</button>
+    <button @click="$emit('chooseBox', 'isReturnedUser', $event)">Login</button>
     `
 }
