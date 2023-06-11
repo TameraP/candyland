@@ -4,12 +4,18 @@ import Login from "./Login.js";
 export default {
     components: { AddUser, Login },
     template: `
-        <div class="chosenBox" v-if="userBox == 'isNewUser'">
+        <div :class="[ firstCounter ? closeChosenBox : chosenBox ]" v-if="userBox == 'isNewUser'">
             <add-user></add-user>
         </div>
-        <div class="chosenBox" v-if="userBox == 'isReturnedUser'">
+        <div :class="[ firstCounter ? closeChosenBox : chosenBox ]" v-if="userBox == 'isReturnedUser'">
             <login></login>
-        </div
+        </div>
     `,
-    props: ['userBox']
+    data () {
+        return {
+            firstCounter: this.firstCount
+        }
+    },
+    props: ['userBox', 'firstCount']
+
 }

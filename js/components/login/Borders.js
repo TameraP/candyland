@@ -3,12 +3,14 @@ import Boxes from "./Boxes.js";
 export default {
     components: { Users, Boxes },
     template: `
+    <div class="loginBox">
         <div v-for="border in borders">
             <!--<div class="borders" :class="[border.hide ? hideBorder : border.className ]"></div>-->
             <div class="borders" id="border.className" :style="{ backgroundColor: border.color }" :class="border.className"></div>
         </div>
-        <boxes :userBox="userBox"></boxes>
-        <users @showBox="showBox"></users>
+        <boxes :userBox="userBox" :firstCount="firstCount"></boxes>
+    </div>
+    <users @showBox="showBox"></users>
     `,
 
     data() {
@@ -44,47 +46,51 @@ export default {
                 }
             ],
 
-            userBox: []
+            userBox: [],
+
+            firstCount: false
             
         }
     },
 
     methods: {
-        showBox(chosenBox) {
+        showBox(chosenBox, counter) {
 
             this.userBox = chosenBox;
+            if(counter > 1 ? this.firstCount = true : this.firstCount = false );
+            // this.counter = counter;
             /* this really only controls the color styling of the blocks on the welcome page */
 
-            var chosenGroup;
-            var chosenColor = "";
-            var originalColor = [];
+            // var chosenGroup;
+            // var chosenColor = "";
+            // var originalColor = [];
 
-            this.borders.forEach((key) => {
-                if(!key.hide) {
-                    originalColor.push(key.color);
-                }
+            // this.borders.forEach((key) => {
+            //     if(!key.hide) {
+            //         originalColor.push(key.color);
+            //     }
 
-                key.hide = true;
+            //     key.hide = true;
 
-                if(key.title == chosenBox) {
-                    chosenGroup = key.group;
-                    chosenColor = key.color;
-                    console.log(key.color);
-                }
+            //     if(key.title == chosenBox) {
+            //         chosenGroup = key.group;
+            //         chosenColor = key.color;
+            //         console.log(key.color);
+            //     }
 
-                if(key.group > chosenGroup && key.hide == true ) {
-                  key.color = chosenColor;
-                }
+            //     if(key.group > chosenGroup && key.hide == true ) {
+            //       key.color = chosenColor;
+            //     }
 
-                key.hide = false;
+            //     key.hide = false;
             
-            }); 
+            // }); 
 
-            this.borders.forEach((key) => {
-                for(let colorsSet in originalColor) {
+            // this.borders.forEach((key) => {
+            //     for(let colorsSet in originalColor) {
 
-                }
-            });
+            //     }
+            // });
         }
     }
 }

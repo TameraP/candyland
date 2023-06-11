@@ -14,17 +14,20 @@ export default {
             boxStatus: {
                 isNewUser: false,
                 isReturnedUser: false
-            }
+            },
+            
+            newCounter: 0
         }
     },
 
     methods: {
-        show(status, e) {
+        show(status, counter, e) {
             for(let key in this.boxStatus) {
                 if(key == status ? this.boxStatus[key] = true : this.boxStatus[key] = false );
             }  
-            
-            this.$emit('showBox', status);
+            this.newCounter++;
+            console.log(this.newCounter);
+            this.$emit('showBox', status, this.newCounter);
         }
     }
 }
