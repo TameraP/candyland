@@ -1,12 +1,13 @@
 import Users from "./Users.js";
+import Boxes from "./Boxes.js";
 export default {
-    components: { Users },
+    components: { Users, Boxes },
     template: `
         <div v-for="border in borders">
             <!--<div class="borders" :class="[border.hide ? hideBorder : border.className ]"></div>-->
             <div class="borders" id="border.className" :style="{ backgroundColor: border.color }" :class="border.className"></div>
         </div>
-
+        <boxes :userBox="userBox"></boxes>
         <users @showBox="showBox"></users>
     `,
 
@@ -41,12 +42,19 @@ export default {
                     group: 4,
                     title: 'isReturnedUser'
                 }
-            ]
+            ],
+
+            userBox: []
+            
         }
     },
 
     methods: {
         showBox(chosenBox) {
+
+            this.userBox = chosenBox;
+            /* this really only controls the color styling of the blocks on the welcome page */
+
             var chosenGroup;
             var chosenColor = "";
             var originalColor = [];
@@ -74,7 +82,7 @@ export default {
 
             this.borders.forEach((key) => {
                 for(let colorsSet in originalColor) {
-                    
+
                 }
             });
         }

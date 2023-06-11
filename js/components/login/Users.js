@@ -1,9 +1,8 @@
 import NewUser from "./NewUser.js";
 import ReturnedUser from "./ReturnedUser.js";
-import AddUser from "./AddUser.js";
 
 export default {
-    components: { NewUser, ReturnedUser, AddUser },
+    components: { NewUser, ReturnedUser },
     template: `
         <div class="userLogin">
             <new-user @choose-box="show"></new-user>
