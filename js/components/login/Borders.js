@@ -1,15 +1,17 @@
 import Users from "./Users.js";
 import Boxes from "./Boxes.js";
+import LoginErrors from "./LoginErrors.js";
 export default {
-    components: { Users, Boxes },
+    components: { Users, Boxes, LoginErrors },
     template: `
     <div class="loginBox">
         <div v-for="border in borders">
             <!--<div class="borders" :class="[border.hide ? hideBorder : border.className ]"></div>-->
             <div class="borders" id="border.className" :style="{ backgroundColor: border.color }" :class="border.className"></div>
         </div>
-        <boxes :userBox="userBox" :firstCount="firstCount"></boxes>
+        <boxes @submitFormAgain="submitFormAgain" :userBox="userBox" :firstCount="firstCount"></boxes>
     </div>
+    <login-errors :newFindErrors="newFindErrors"></login-errors>
     <users @showBox="showBox"></users>
     `,
 
@@ -47,8 +49,8 @@ export default {
             ],
 
             userBox: [],
-
-            firstCount: false
+            firstCount: false,
+            newFindErrors: []
             
         }
     },
@@ -91,6 +93,12 @@ export default {
 
             //     }
             // });
+        },
+
+        submitFormAgain(newFindErrors) {
+            alert("1");
+            this.newFindErrors.push(userData);
+            this.newFindErrors.push(typeOfForm);
         }
     }
 }

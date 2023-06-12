@@ -1,6 +1,6 @@
 export default {
     template: `
-        <form>
+        <form @submit.prevent="submitForm">
             <h2>Sign up!</h2>
             <div class="userFormStyling">
                 <span>
@@ -26,6 +26,11 @@ export default {
                     <input v-model="userData.password" class="formName" type="text">
                 </span>
             </div>
+
+            
+            <div class="submitBox">
+                <button class="submitButton" type="submit">Submit</button>
+            </div>
         </form>
     `,
     data() {
@@ -38,6 +43,12 @@ export default {
                 password: '',
                 userAgreement: false
             }
+        }
+    },
+    methods: {
+        submitForm () {
+            alert(2);
+            this.$emit('submitForm', this.userData, 'newUser');
         }
     }
 }

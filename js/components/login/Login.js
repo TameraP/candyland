@@ -12,6 +12,10 @@ export default {
                 <input v-model="userData.password" class="formName" type="text">
             </span>
         </div>
+
+        <div class="submitBox">
+            <button class="submitButton" type="submit">Submit</submit>
+        </div>
     </form>
     `,
     data() {
