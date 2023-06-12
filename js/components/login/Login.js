@@ -1,16 +1,24 @@
 export default {
     template: `
-    
+    <form>
+        <h2>Login!</h2>
+        <div class="userFormStyling boxstylingLogin">
+            <span>
+                <label class='label'>User Name</label><br/>
+                <input v-model="userData.userName" class="formName" type="text">
+            </span>
+            <span>
+                <label class='label'>Password</label><br/>
+                <input v-model="userData.password" class="formName" type="text">
+            </span>
+        </div>
+    </form>
     `,
     data() {
         return {
             userData: {
-                firstName: "",
-                lastName: "",
                 userName: "",
-                email: "",
-                password: "",
-                userAgreement: false
+                password: ""
             }
         }
     }
