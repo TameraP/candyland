@@ -14,7 +14,7 @@ export default {
         </div>
 
         <div class="submitBox">
-            <button class="submitButton" type="submit">Submit</submit>
+            <button @click.prevent="submitForm" class="submitButton" type="submit">Submit</button>
         </div>
     </form>
     `,
@@ -24,6 +24,11 @@ export default {
                 userName: "",
                 password: ""
             }
+        }
+    },
+    methods: {
+        submitForm () {
+            this.$emit('submitForm', this.userData, 'returnUser');
         }
     }
 }

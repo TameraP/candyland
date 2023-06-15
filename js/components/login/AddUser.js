@@ -1,6 +1,6 @@
 export default {
     template: `
-        <form @submit.prevent="submitForm">
+        <form>
             <h2>Sign up!</h2>
             <div class="userFormStyling">
                 <span>
@@ -27,9 +27,15 @@ export default {
                 </span>
             </div>
 
+            <div class="userFormStyling">
+                <label class="checkbox">
+                    <input type="checkbox" v-model="userData.userAgreement">
+                    I agree to the <a href="#">terms and conditions</a>
+                </label>
+            </div>
             
             <div class="submitBox">
-                <button class="submitButton" type="submit">Submit</button>
+                <button @click.prevent="submitForm" class="submitButton" type="submit">Submit</button>
             </div>
         </form>
     `,
@@ -47,7 +53,6 @@ export default {
     },
     methods: {
         submitForm () {
-            alert(2);
             this.$emit('submitForm', this.userData, 'newUser');
         }
     }

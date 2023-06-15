@@ -1,39 +1,63 @@
 export default {
     template: `
-        {{ findErrors }}
+        <div v-for="errors in emptyData">
+            <p v-if="errors !== 'userAgreement'" class="errorsList">
+                Please provide your {{ errors }}.
+            </p>
+            <p v-else>
+                Please agree to our terms and conditions.
+            </p>
+        </div>
     `,
+
+    props: ['newFindErrors'],
 
     data() {
         return {
-            outputErros: [],
-            emptyData: []
+            errorsList: [],
+            emptyData: [],
+            errorsPresent: false
         }
     },
+    computed: {
+        computedObjectToBeWatched() {
+            return this.newFindErrors;
+        }
+    },
+    watch: {
+        computedObjectToBeWatched: {
+            deep:true,
+            handler(newVal, oldVal) {
+                for(var index in newVal) {
+                    if(newVal[index] == "" && !this.emptyData.includes(index)) { 
+                        this.emptyData.push(index)
+                        this.errorsPresent = true;
+                    }
+                    else if(index == "userAgreement" && !this.emptyData.includes(index) && newVal[index] == false) {
+                        this.emptyData.push(index)
+                        this.errorsPresent = true;
+                    }
+                    else if(newVal[index] !== "" && this.emptyData.includes(index) && index !== "userAgreement" ) {
+                        var indexNum = this.emptyData.indexOf(index);
+                        this.emptyData.splice(indexNum, 1);
+                    }
 
-    props: ['findErrors'],
+                    else if(index == "userAgreement" && this.emptyData.includes(index) && newVal[index] == true ) {
+                        var indexNum = this.emptyData.indexOf(index);
+                        this.emptyData.splice(indexNum, 1);
+                    }
+                }
 
-    methods: {
-        // submitForm(userData, typeOfForm) {
-        //     for(var index in userData) {
-        //         if(userData[index] == "" && !this.emptyData.includes(index)) { 
-        //             this.emptyData.push(index);
-        //         }
-        //         else if(userData[index] !== "" && this.emptyData.includes(index)) {
-        //             var indexNum = this.emptyData.indexOf(index);
-        //             this.emptyData.splice(indexNum, 1);
-        //         }
-        //     }
+                if(this.emptyData.length === 0) {
+                    this.errorsPresent = false;
+                }
 
-        //     if(this.emptyData.length >= 0) {
-        //         alert("yep");
-        //         // this.emptyData.forEach((key) => {
-        //         //     this.outputErros.push("Please enter your" + key);
-        //         // });
-        //     };
-        // }
+                else {
+                    this.errorsPresent = true;
+                }
+
+                this.$emit("errorBoxStyling", this.errorsPresent);
+            }
+        }
     }
 }
-
-{/* <div class="loginErrorsContainer">
-<add-user @submitForm="submitForm"></add-user>
-</div> */}

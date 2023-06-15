@@ -26,7 +26,6 @@ export default {
                 if(key == status ? this.boxStatus[key] = true : this.boxStatus[key] = false );
             }  
             this.newCounter++;
-            console.log(this.newCounter);
             this.$emit('showBox', status, this.newCounter);
         }
     }
