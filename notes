@@ -1,3 +1,40 @@
 https://bootstrap-vue.org/docs/components/collapse
 
 next time, I'll use vue toggle or collapse to create the effects
+
+
+getter & setters vs __constructors
+
+if every object has what's declared, then use a constructore
+
+if there are unque characteristics, use getter and setters
+
+
+
+Static vs Non-Static
+
+Static methods don't need to instantiated. They're set up like this
+
+$variable = (new ClassName)->get($inputData['specificValue']);
+and are called like this
+ClassName::method()
+
+static methods use a protected scope
+
+Non-static methods use public scopes and are called like this
+$var = new ClassName();
+$var->method();
+
+or (new ClassName)->Method();
+
+
+DB Connection
+
+Both MySQLi and PDO have their advantages:
+
+PDO will work on 12 different database systems, whereas MySQLi will only work with MySQL databases.
+(from W3schools- https://www.w3schools.com/php/php_mysql_connect.asp)
+
+chose PDO since it works with more db systems
+
+PDO help came from w3schools and https://gist.github.com/jameskropp/eb2b2cc9668a65da0aabc105f8140374 
