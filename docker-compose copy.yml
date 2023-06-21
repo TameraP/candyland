@@ -12,17 +12,17 @@ services:
     ports:
       - "3306:3306"
     environment:
-      DB_CONNECTION=mysql
-      DB_HOST=mysql
-      DB_PORT=3306
-      DB_DATABASE=candyland_db
-      DB_USERNAME=root
-      DB_PASSWORD=password
-      # MYSQL_DATABASE: candyland_db
-      # MYSQL_HOST: db
-      # MYSQL_USER: Tamerap
-      # MYSQL_ROOT_PASSWORD: password
-      # MYSQL_PASSWORD: Friday91!
+      # DB_CONNECTION=mysql
+      # DB_HOST=mysql
+      # DB_PORT=3306
+      # DB_DATABASE=candyland_db
+      # DB_USERNAME=root
+      # DB_PASSWORD=password
+      MYSQL_DATABASE: candyland_db
+      MYSQL_HOST: db
+      MYSQL_USER: Tamerap
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_PASSWORD: Friday91!
     networks:
       - mysql-phpmyadmin
       
@@ -34,8 +34,8 @@ services:
     container_name: candyland_phpma
     restart: always
     ports:
-      # - "3306:3306"
-      - "8090:80"
+      - "3306:3306"
+      # - "8090:80"
     environment:
       MYSQL_HOST: db
       MYSQL_USER: root

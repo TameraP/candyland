@@ -6,17 +6,15 @@ class Players extends DatabaseClass {
     protected $playerStatus = false;
     protected $playerAgreement = false;
     private $dbClass;
-    private $dbConn;
     protected $var1;
+    protected $dbName;
 
-    function __construct($playerInfo=[]) {
+    // function __construct($dbClass, $playerInfo = []) {
+    //   $this->dbClass = DatabaseClass::getInstance();
+    function __construct($playerInfo = []) {
+      $this->dbClass = $this->getConn();
+      $this->dbName = DatabaseClass::getDB();
       $this->playerInfo = $playerInfo['newVal'];
-    }
-
-
-    function GetDB() {
-        $this->dbClass = new DatabaseClass();
-        return $this->dbClass->getConn();
     }
 
     function GetPlayerInfo($playerInfo) {
@@ -30,7 +28,6 @@ class Players extends DatabaseClass {
     }
 
     function InsertPlayerFacts($playerFacts) {
-        $this->dbConn = $this->GetDB();
         $info = $this->playerFacts;
         $firstName = $info['firstName'];
         $lastName = $info['lastName'];
@@ -38,22 +35,10 @@ class Players extends DatabaseClass {
         $userName = $info['userName'];
         $pwd = $info['password'];
         $agree = $info['userAgreement'];
-        $LVL = 0;
-        try {
-            $stmt = $this->dbConn->prepare("INSERT INTO Users (FirstName, LastName, Email, UserName, UserPassword, UserAgree, LVL) VALUES (:firstName, :lastName, :email, :userName, :pwd, :agree, :LVL)");
-            $stmt->bindParam(':firstName', $firstName);
-            $stmt->bindParam(':lastName', $lastName);
-            $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':userName', $userName);
-            $stmt->bindParam(':pwd', $pwd);
-            $stmt->bindParam(':agree', $agree);
-            $stmt->bindParam(':LVL', $LVL);
-            $this->var1 = $stmt->execute();
-        }
-        catch(PDOException $e) {
-            echo $e->getMessage();
-        }
-     
+        $sql = "INSERT INTO candyland_db (FirstName, LastName, Email, UserName, UserPassword, UserAgree, LVL) VALUES ($firstName, $lastName, $email, $userName, $pwd, $agree, 0)";
+        // $this->var1 =$this->dbClass->exec($sql);
+        // $this->var1 = mysqli_query($this->dbClass, $sql);
+        $this->var1 = $this->getConn();
         return $this->FetchPlayerFacts($this->var1);
     }
 
