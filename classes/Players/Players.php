@@ -13,7 +13,6 @@ class Players extends DatabaseClass {
       $this->playerInfo = $playerInfo['newVal'];
     }
 
-
     function GetDB() {
         $this->dbClass = new DatabaseClass();
         return $this->dbClass->getConn();
@@ -54,12 +53,31 @@ class Players extends DatabaseClass {
             echo $e->getMessage();
         }
      
-        return $this->FetchPlayerFacts($this->var1);
+        if($this->var1) {
+            return $this->FetchPlayerFacts($this->playerFacts);
+        }
     }
 
-    function FetchPlayerFacts($var1) {
-        $this->var2 = $var1;
-        return $this->var2;
+
+    function FetchPlayerFacts($playerFacts) {
+        $this->dbConn = $this->GetDB();
+        $info = $this->playerFacts;
+        $userNameInfo = $info['userName'];
+
+        $stmt = $this->dbConn->prepare("SELECT * FROM Users WHERE UserName= ? ");
+        $stmt->execute([$userNameInfo]);
+        $user = $stmt->fetch();
+
+        // if($user && password_verify($info['password'], $user['UserPassword'])) {
+         if($user && password_verify("password", $user['UserPassword'])) {
+            $this->var1 = $user;
+        }
+        else {
+            // $this->var1 = "It doesn't look like we have you in our system.<br>". $user['UserPassword']. "<br>".$info['password'];
+            $this->var1 = password_verify($info['password'], $user['UserPassword'])."<br>".$info['password']."<br>".$user['UserPassword'];
+        }
+
+        return $this->var1;
     }
 }
 
