@@ -1,11 +1,11 @@
 export default {
     template: `
-        <div class="userProfileContainer" v-show="loadProfile == true">
+        <div class="userProfileContainer" v-show="loadProfile == true && falseProfile == false">
             <div class="userProfileFirst">
                 <img :src="userData.userPhoto" class="profileImg">
-                <h2>{{ userData.userName }}</h2>
             </div>
             <div class="userProfileSecond">
+                <h2>{{ userData.userName }}</h2>
                 <div>
                     User ID: {{ userData.userID }}
                 </div>
@@ -13,6 +13,10 @@ export default {
                     User Level: {{ userData.userLevel }}
                 </div>
             </div>
+        </div>
+        <div class="userProfileContainer loginErrorUserProfile" v-show="loadProfile == false && falseProfile == true">
+            <button class="tryAgainButton" @click="refreshPage">Try Again</button>
+            <div>{{ userDataError }}</div>
         </div>
     `,
     props: ['finalInfo'],
@@ -27,8 +31,9 @@ export default {
                     photoWidth:"300"
                 }
             ],
-
-            loadProfile: false
+            userDataError: '',
+            loadProfile: false,
+            falseProfile: false
         }
     },
     computed: {
@@ -50,18 +55,31 @@ export default {
                 fetch('../../../classes/input.php', requestOptions)
                     .then(response => response.json())
                     .then(data => {
-                        // this.userData = data;
-                        this.userData.userID = data[0];
-                        this.userData.userName = data[1];
-                        this.userData.userLevel = data[2];
-                        this.userData.userPhoto = data[3];
-                        this.userData.splice(0,1);
 
-                        console.log(this.userData);
+                        if(data[1]) {
+                            console.log(data);
+                            this.userData.userID = data[0][0];
+                            this.userData.userName = data[0][1];
+                            this.userData.userLevel = data[0][2];
+                            this.userData.userPhoto = data[0][3];
+                            this.userData.splice(0,1);
+
+                            this.loadProfile = true;
+                            this.falseProfile = false;
+                        }
+
+                        else {
+                            this.userDataError = data[0];
+                            this.loadProfile = false;
+                            this.falseProfile = true;
+                        }
                     })
-
-                this.loadProfile = true;
             }
+        }
+    },
+    methods: {
+        refreshPage() {
+            window.location.reload();
         }
     }
 }

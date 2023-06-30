@@ -38,3 +38,19 @@ PDO will work on 12 different database systems, whereas MySQLi will only work wi
 chose PDO since it works with more db systems
 
 PDO help came from w3schools and https://gist.github.com/jameskropp/eb2b2cc9668a65da0aabc105f8140374 
+
+
+
+Fixes & Errors List:
+
+- Onclick Submit: the submit button only clicks once. Why does it do that? What did I do wrong? I've added a second button that shows up after the first is set to hide. But I need to figure out how to trigger a button multiple times? maybe clear the array after?
+
+- new user (not an error, but rather requires more programming): after user create, redirect to login page rather then user profile
+
+- Quesiton: Does it matter if I added validation to the javascript rather than the php class? 
+    - I still need to add cleaning and regexp to class to verify that:
+        1. The email is an email
+        2. The username isn't in use
+        3. Injection isn't happening
+        4. Limits to how much can be inserted
+

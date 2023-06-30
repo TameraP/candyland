@@ -2,7 +2,7 @@
     .loginBox {
 
         .userProfile {
-            align-items: flex-end;
+            align-items: center;
             animation-name: openUserProfile;
             animation-duration: 1s;
             animation-timing-function: ease;
@@ -16,14 +16,13 @@
             padding: 5% 0;
 
             .userProfileContainer {
+                align-items: center;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-evenly;
                 width: 80%;
 
                 .userProfileFirst, .userProfileSecond {
-                    align-items: center;
-                    display: flex;
-                    flex-wrap: wrap;
-                    justify-content: space-around;
-                    padding: 20px 0;
             
                     .profileImg {
                         width: 200px;
@@ -32,7 +31,36 @@
                     h2 {
                         font-size: 25px;
                     }
+
                 }
+
+                .tryAgainButton {
+                    border: 5px double #f2cb07;
+                    border-radius: 50%;
+                    background-color: #fff;
+                    color: #8c0b84;
+                    font-family: 'Poppins';
+                    margin-top: 4%;
+                    margin-bottom: 20px;
+                    padding: 10px;
+                    transition: background-color 1s, color 1s, border-radius 1s;
+                    width: 150px;
+                    height: 80px;
+                }
+
+            
+                .tryAgainButton:hover {
+                    background-color: #8c0b84;
+                    color: #fff;
+                    border-radius: 0;
+                }
+            }
+
+            .loginErrorUserProfile {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
             }
         }
 

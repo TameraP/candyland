@@ -10,6 +10,7 @@ class Players extends DatabaseClass {
     private $dbClass;
     private $dbConn;
     protected $var1;
+    protected $returnFetch = [];
 
     function __construct($playerInfo=[]) {
       $this->playerInfo = $playerInfo['newVal'];
@@ -75,16 +76,23 @@ class Players extends DatabaseClass {
             if(password_verify($info['password'], $user['UserPassword'])) {
                 array_push($this->loggedInPlayerBasic, $user['ID'], $user['UserName'], $user['LVL'], $user['UserPhoto']);
                 $this->var1 = $this->loggedInPlayerBasic;
+                $fetchStatus = true;
+                $this->returnFetch = array($this->var1, $fetchStatus);
+
             }
             else {
                 $this->var1 = "Sorry. It seems that ".$info['password']." is not the correct password. Please try again.";
+                $fetchStatus = false;
+                $this->returnFetch = array($this->var1, $fetchStatus);
             }
         }
         else {
             $this->var1 = "Sorry. It doesn't look like we have ".$userNameInfo." in our database. Please try again.";
+            $fetchStatus = false;
+            $this->returnFetch = array($this->var1, $fetchStatus);
         }
 
-        return $this->var1;
+        return $this->returnFetch;
     }
 }
 
