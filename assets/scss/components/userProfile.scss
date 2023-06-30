@@ -1,5 +1,6 @@
 .homeBody {
     .loginBox {
+
         .userProfile {
             align-items: flex-end;
             animation-name: openUserProfile;
@@ -10,8 +11,29 @@
             font-family: "Poppins";
             font-size: 16px;
             justify-content: center;
-            overflow: hidden;
+            overflow-y: auto;
+            overflow-x: hidden;
             padding: 5% 0;
+
+            .userProfileContainer {
+                width: 80%;
+
+                .userProfileFirst, .userProfileSecond {
+                    align-items: center;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-around;
+                    padding: 20px 0;
+            
+                    .profileImg {
+                        width: 200px;
+                    }
+            
+                    h2 {
+                        font-size: 25px;
+                    }
+                }
+            }
         }
 
         @keyframes openUserProfile {
@@ -19,4 +41,5 @@
             to { height: 420px;}
         }
     }
+
 }

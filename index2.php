@@ -12,7 +12,7 @@
         <script>
 //{ "newVal": [ { "firstName": "t", "lastName": "t", "email": "t2", "userName": "t", "password": "t", "userAgreement": true }, "newUser" ] }
                 var userData;
-                var newVal = [ { "firstName": "t", "lastName": "t", "email": "t", "userName": "t", "password": "t", "userAgreement": true }, "newUser" ];
+                var newVal = [ { "firstName": "Tamera", "lastName": "Peake", "email": "test@webspec.com", "userName": "TameraUser", "password": "password", "userAgreement": true }, "returnedUser" ];
 
                 const requestOptions = {
                     method: "POST",

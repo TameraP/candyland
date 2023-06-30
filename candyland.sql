@@ -7,5 +7,8 @@ CREATE TABLE Users (
   UserPassword varchar(225) NOT NULL,
   UserAgree boolean default 0,
   LVL int (50),
+  UserPhoto varchar(400) NOT NULL,
   PRIMARY KEY (ID)
 );
+
+INSERT INTO Users (FirstName, LastName, Email, UserName, UserPassword, UserAgree, LVL, UserPhoto) VALUES ('Tamera', 'Peake', '1234@gmail.com', 'Tamerap', 'password1', TRUE, 0, './assets/img/userPhotos/photocomingsoon.jpg');

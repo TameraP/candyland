@@ -23,7 +23,7 @@ export default {
                 </span>
                 <span>
                     <label class='label'>Password</label><br/>
-                    <input v-model="userData.password" class="formName" type="text">
+                    <input v-model="userData.password" class="formName" type="password">
                 </span>
             </div>
 

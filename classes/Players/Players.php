@@ -3,6 +3,8 @@ include("./connect/DatabaseClass.php");
 class Players extends DatabaseClass {
     protected $playerInfo = [];
     protected $playerFacts = [];
+    protected $loggedInPlayerBasic = [];
+    protected $loggedInPlayerAdvanced = [];
     protected $playerStatus = false;
     protected $playerAgreement = false;
     private $dbClass;
@@ -35,11 +37,12 @@ class Players extends DatabaseClass {
         $lastName = $info['lastName'];
         $email = $info['email'];
         $userName = $info['userName'];
-        $pwd = $info['password'];
+        $pwd = password_hash($info['password'], PASSWORD_DEFAULT);
         $agree = $info['userAgreement'];
+        $userPhoto = './assets/img/userPhotos/photocomingsoon';
         $LVL = 0;
         try {
-            $stmt = $this->dbConn->prepare("INSERT INTO Users (FirstName, LastName, Email, UserName, UserPassword, UserAgree, LVL) VALUES (:firstName, :lastName, :email, :userName, :pwd, :agree, :LVL)");
+            $stmt = $this->dbConn->prepare("INSERT INTO Users (FirstName, LastName, Email, UserName, UserPassword, UserAgree, LVL, UserPhoto) VALUES (:firstName, :lastName, :email, :userName, :pwd, :agree, :LVL, :userPhoto)");
             $stmt->bindParam(':firstName', $firstName);
             $stmt->bindParam(':lastName', $lastName);
             $stmt->bindParam(':email', $email);
@@ -47,6 +50,7 @@ class Players extends DatabaseClass {
             $stmt->bindParam(':pwd', $pwd);
             $stmt->bindParam(':agree', $agree);
             $stmt->bindParam(':LVL', $LVL);
+            $stmt->bindParam(':userPhoto', $userPhoto);
             $this->var1 = $stmt->execute();
         }
         catch(PDOException $e) {
@@ -67,14 +71,17 @@ class Players extends DatabaseClass {
         $stmt = $this->dbConn->prepare("SELECT * FROM Users WHERE UserName= ? ");
         $stmt->execute([$userNameInfo]);
         $user = $stmt->fetch();
-
-        // if($user && password_verify($info['password'], $user['UserPassword'])) {
-         if($user && password_verify("password", $user['UserPassword'])) {
-            $this->var1 = $user;
+        if($user) {
+            if(password_verify($info['password'], $user['UserPassword'])) {
+                array_push($this->loggedInPlayerBasic, $user['ID'], $user['UserName'], $user['LVL'], $user['UserPhoto']);
+                $this->var1 = $this->loggedInPlayerBasic;
+            }
+            else {
+                $this->var1 = "Sorry. It seems that ".$info['password']." is not the correct password. Please try again.";
+            }
         }
         else {
-            // $this->var1 = "It doesn't look like we have you in our system.<br>". $user['UserPassword']. "<br>".$info['password'];
-            $this->var1 = password_verify($info['password'], $user['UserPassword'])."<br>".$info['password']."<br>".$user['UserPassword'];
+            $this->var1 = "Sorry. It doesn't look like we have ".$userNameInfo." in our database. Please try again.";
         }
 
         return $this->var1;

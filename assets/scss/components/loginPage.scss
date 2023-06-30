@@ -5,7 +5,7 @@
     flex-direction: column;
     font-family: 'Titan One';
     justify-content: center;
-    max-height: 100vh;
+    // max-height: 100vh;
 
     h1 {
         color: #f2071b;
@@ -29,7 +29,8 @@
         animation-fill-mode: forwards;
         font-family: "Poppins";
         font-size: 16px;
-        overflow: hidden;
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 
     @keyframes openErrorsBox {
