@@ -1,4 +1,6 @@
+import EditUserInfo from "./EditUserInfo.js";
 export default {
+    components: { EditUserInfo },
     template: `
         <div class="userProfileContainer" v-show="loadProfile == true && falseProfile == false">
             <div class="userProfileFirst">
@@ -13,6 +15,9 @@ export default {
                     User Level: {{ userData.userLevel }}
                 </div>
             </div>
+        </div>
+        <div class="userProfileContainer" v-show="loadProfile == true && falseProfile == false">
+            <edit-user-info></edit-user-info>
         </div>
         <div class="userProfileContainer loginErrorUserProfile" v-show="loadProfile == false && falseProfile == true">
             <button class="tryAgainButton" @click="refreshPage">Try Again</button>

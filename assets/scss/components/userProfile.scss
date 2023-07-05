@@ -8,6 +8,7 @@
             animation-timing-function: ease;
             animation-fill-mode: forwards;
             display: flex;
+            flex-direction: column;
             font-family: "Poppins";
             font-size: 16px;
             justify-content: center;
@@ -20,6 +21,7 @@
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-evenly;
+                padding-top: 20px;
                 width: 80%;
 
                 .userProfileFirst, .userProfileSecond {

@@ -54,3 +54,8 @@ Fixes & Errors List:
         3. Injection isn't happening
         4. Limits to how much can be inserted
 
+
+//I have to create a file uploader for the profile image. I'll need to consider how to build that.
+//I could use this  vue3 tutorial to make an drag and drop image uploader: https://www.smashingmagazine.com/2022/03/drag-drop-file-uploader-vuejs-3/
+//This uses vue2: https://www.digitalocean.com/community/tutorials/how-to-handle-file-uploads-in-vue-2
+stuck between wanting to use an API or not
