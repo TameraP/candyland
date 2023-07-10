@@ -1,5 +1,5 @@
 <?php
-require_once '../Players.php';
+require_once './Players/Players.php';
 $json = file_get_contents('php://input');
 $data = json_decode($json, true); //the true converts the object into an array
 

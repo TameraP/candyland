@@ -57,7 +57,7 @@ export default {
                     body: JSON.stringify({newVal})
                 };
 
-                fetch('../../../classes/input.php', requestOptions)
+                fetch('./classes/input.php', requestOptions)
                     .then(response => response.json())
                     .then(data => {
 

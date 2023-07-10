@@ -40,7 +40,7 @@ class Players extends DatabaseClass {
         $userName = $info['userName'];
         $pwd = password_hash($info['password'], PASSWORD_DEFAULT);
         $agree = $info['userAgreement'];
-        $userPhoto = './assets/img/userPhotos/photocomingsoon';
+        $userPhoto = './assets/img/userPhotos/photocomingsoon.jpg';
         $LVL = 0;
         try {
             $stmt = $this->dbConn->prepare("INSERT INTO Users (FirstName, LastName, Email, UserName, UserPassword, UserAgree, LVL, UserPhoto) VALUES (:firstName, :lastName, :email, :userName, :pwd, :agree, :LVL, :userPhoto)");
@@ -62,6 +62,7 @@ class Players extends DatabaseClass {
             return $this->FetchPlayerFacts($this->playerFacts);
         }
     }
+
 
 
     function FetchPlayerFacts($playerFacts) {
